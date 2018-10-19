@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+{% load staticfiles %}
+ 
+{% block content %}
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+	<form action="" method="post" class="w3-container w3-card-4">
+		{% csrf_token %}
+		<p>
+			{{ form.username }}
+			<label>Username</label>
+		</p>
+		<p>
+			{{ form.password1 }}
+			<label>Password</label>
+		</p>
+		<p>
+			{{ form.password2 }}
+			<label>Confirm password</label>
+		</p>
+		<p>
+			<button type="submit" class="w3-button w3-section w3-teal w3-ripple">Sign up</button>
+			<a href="{% url 'logout' %}" class="w3-button w3-section w3-teal w3-ripple">Log in</a>
+		</p>
+	</form>
+</div>
+{% endblock %}

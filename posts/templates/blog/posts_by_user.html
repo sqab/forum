@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% load avatar_tags %} {% load staticfiles %} {% block content %}
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px"></div>
+{% for post in posts %}
+<div class="w3-container w3-card w3-white w3-round w3-margin">
+	<br> {% avatar post.user class="w3-circle" style="height:60px;width:60px" %}
+	<!-- <img src="" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
+	<span class="w3-right w3-opacity">{{ post.published_date }}</span>
+	<h5>
+		<a href="{% url 'posts_by_user' pk=post.user.pk %}" style="text-decoration:none">{{ post.user }}</a>
+	</h5>
+	<hr class="w3-clear">
+	<a href="{% url 'details' pk=post.pk %}" style="text-decoration:none">
+		<h3>{{ post.title }}</h3>
+	</a>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

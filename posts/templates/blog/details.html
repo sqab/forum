@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load avatar_tags %} {% load staticfiles %} {% block content %}
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+	<!-- Page content -->
+	<div class="w3-main">
+		<i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
+		<a href="javascript:void(0)" class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right" onclick="document.getElementById('id01').style.display='block'">
+			<i class="fa fa-pencil"></i>
+		</a>
+
+		<div class="w3-container person">
+			<br> {% avatar post.user class="w3-round" %}
+			<h2>{{ post.title }}</h2>
+			<h4 class="w3-opacity">
+				<i class="fa fa-clock-o"></i> {{ post.published_date }}
+			</h4>
+			<hr>
+			<p style="font-size:16px;">{{ post.text|safe|linebreaksbr }}</p>
+			<a href="/post/{{post.id}}/like" style="text-decoration:none">
+				<i class="fa fa-thumbs-up"></i> {{ likes }}</a>
+			<i class="fa fa-eye"></i> {{ views }}
+			<h4>Comments</h4>
+			{% for comment in comments %}
+			<hr>
+			<span style="font-size:16px;">{{comment.text}}</span>
+			<br> <span style="font-size:13px;">{{comment.user}}</span>
+			<br> <span class="w3-opacity" style="font-size:12px;">{{comment.created}}</span>
+			{%endfor%}
+			<br>
+			<p>
+				<form class="w3-input w3-border w3-margin-bottom" action="" method="post">
+					{%csrf_token%}
+					<p>
+						<label>Comment</label>
+						<br> {{ form.text }}
+					</p>
+					<input class="w3-button w3-section w3-teal w3-ripple" type="submit" value="Send">
+				</form>
+			</p>
+		</div>
+	</div>
+</div>
+{% endblock %}
